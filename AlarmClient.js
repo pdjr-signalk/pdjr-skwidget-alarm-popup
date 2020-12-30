@@ -30,7 +30,7 @@ class AlarmClient {
       return(window.top.AlarmClient);
     } else {
       try {
-        window.top.AlarmClient = new Annunciator(signalkClient);
+        window.top.AlarmClient = new AlarmClient(signalkClient);
         return(window.top.AlarmClient);
       } catch(e) {
         console.log("AlarmClient: install error (%s)", e);
