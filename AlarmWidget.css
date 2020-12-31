@@ -1,4 +1,4 @@
-#alarmclient {
+#alarmwidget {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -13,12 +13,12 @@
   border: 10px solid red;
   border-radius: 35px;
 }
-#alarmclient.zoom {
+#alarmwidget.zoom {
   zoom: 0.1;
   top: 20px;
   right: 20px;
 }
-#alarmclient-container {
+#alarmwidget-container {
   flex-grow: 1;
   width: 100%;
   height: 100%;
@@ -29,7 +29,7 @@
   justify-content: center;
 }
 
-#alarmclient-notification-panel {
+#alarmwidget-notification-panel {
   flex: 1;
   width: 95%;
   height: auto;
@@ -37,17 +37,17 @@
   flex-direction: column;
   padding: 10px;
 }
-#alarmclient-notification-panel .notification {
+#alarmwidget-notification-panel .alarmwidget-notification {
   color: red;
 }
-#alarmclient-notification-panel .notification.warn::before { content: "[WARN ] "; }
-#alarmclient-notification-panel .notification.alarm::before { content: "[ALARM] "; }
-#alarmclient-notification-panel .notification.alert::before { content: "[ALERT] "; }
-#alarmclient-notification-panel .notification.emergency::before { content: "[EMERG] "; }
-#alarmclient-notification-panel .notification.new { font-weight: bold; }
+#alarmwidget-notification-panel .alarmwidget-notification.warn::before { content: "[WARN ] "; }
+#alarmwidget-notification-panel .alarmwidget-notification.alarm::before { content: "[ALARM] "; }
+#alarmwidget-notification-panel .alarmwidget-notification.alert::before { content: "[ALERT] "; }
+#alarmwidget-notification-panel .alarmwidget-notification.emergency::before { content: "[EMERG] "; }
+#alarmwidget-notification-panel .alarmwidget-notification.new { font-weight: bold; }
 
 
-#alarmclient-acknowledge-button {
+#alarmwidget-acknowledge-button {
   width: 100%;
   height: 50px;
   background-color: red;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-class AlarmClient {
+class AlarmWidget {
 
   /********************************************************************
    * This static method returns a handle to the AlarmClient instance
@@ -26,14 +26,14 @@ class AlarmClient {
    */
    
   static install(signalkClient) {
-    if (window.top.AlarmClient) {
-      return(window.top.AlarmClient);
+    if (window.top.AlarmWidget) {
+      return(window.top.AlarmWidget);
     } else {
       try {
-        window.top.AlarmClient = new AlarmClient(signalkClient);
-        return(window.top.AlarmClient);
+        window.top.AlarmWidget = new AlarmWidget(signalkClient);
+        return(window.top.AlarmWidget);
       } catch(e) {
-        console.log("AlarmClient: install error (%s)", e);
+        console.log("AlarmWidget: install error (%s)", e);
       }
     }
     return(null)
@@ -45,10 +45,10 @@ class AlarmClient {
     this.signalkClient = signalkClient;
     this.currentNotificationIds = [];
 
-    this.popup = PageUtils.createElement('div', 'alarmclient', 'hidden', null, window.top.document.body);
-    this.popupContainer = PageUtils.createElement('div', 'alarmclient-container', null, null, this.popup);
-    this.popupNotificationPanel = PageUtils.createElement('div', 'alarmclient-notification-panel', null, null, this.popupContainer);
-    this.popupAcknowledgeButton = PageUtils.createElement('div', 'alarmclient-acknowledge-button', null, "ACKNOWLEDGE", this.popupContainer);
+    this.popup = PageUtils.createElement('div', 'alarmwidget', 'hidden', null, window.top.document.body);
+    this.popupContainer = PageUtils.createElement('div', 'alarmwidget-container', null, null, this.popup);
+    this.popupNotificationPanel = PageUtils.createElement('div', 'alarmwidget-notification-panel', null, null, this.popupContainer);
+    this.popupAcknowledgeButton = PageUtils.createElement('div', 'alarmwidget-acknowledge-button', null, "ACKNOWLEDGE", this.popupContainer);
 
     this.popupAcknowledgeButton.addEventListener('click', function (e) { this.handleAcknowledge(e); }.bind(this));
     this.connect();
@@ -67,7 +67,7 @@ class AlarmClient {
     this.signalkClient.registerCallback("notifications.plugins.alarm.digest", (notifications) => {
       this.popupNotificationPanel.innerHTML = "";
       notifications.filter(notification => ((notification.method == []) || (notification.method.includes("visual")))).forEach(notification => {
-        var elem = PageUtils.createElement('div', null, 'new notification ' + notification.state, notification.message, this.popupNotificationPanel);
+        var elem = PageUtils.createElement('div', null, 'new alarmwidget-notification ' + notification.state, notification.message, this.popupNotificationPanel);
         if (this.currentNotificationIds.includes(notification.id)) elem.classList.remove("new")
         this.popup.style.display = "normal";
       });
