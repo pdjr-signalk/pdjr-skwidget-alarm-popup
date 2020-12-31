@@ -49,7 +49,6 @@ class AlarmWidget {
     this.popupContainer = PageUtils.createElement('div', 'alarmwidget-container', null, null, this.popup);
     this.popupNotificationPanel = PageUtils.createElement('div', 'alarmwidget-notification-panel', null, null, this.popupContainer);
     this.popupAcknowledgeButton = PageUtils.createElement('div', 'alarmwidget-acknowledge-button', null, "ACKNOWLEDGE", this.popupContainer);
-
     this.popupAcknowledgeButton.addEventListener('click', function (e) { this.handleAcknowledge(e); }.bind(this));
     this.connect();
   }
@@ -75,8 +74,9 @@ class AlarmWidget {
         this.beep();
       }
       this.currentNotificationIds = notifications.map(notification => notification.id);
-      if (this.currentNotificationIds.length == 0) this.popup.style.display = "none";
+      console.log(currentNotificationIds.length);
     });
+    if (this.currentNotificationIds.length == 0) this.popup.style.display = "none";
   }
 
   /********************************************************************
