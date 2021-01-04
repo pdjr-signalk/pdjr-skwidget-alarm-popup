@@ -44,7 +44,7 @@ class AlarmWidget {
 
     this.signalkClient = signalkClient;
 
-    this.popup = PageUtils.createElement('div', 'alarmwidget', 'hidden', null, window.top.document.body);
+    this.popup = PageUtils.createElement('div', 'alarmwidget', null, null, window.top.document.body);
     this.popupContainer = PageUtils.createElement('div', 'alarmwidget-container', null, null, this.popup);
     this.popupNotificationPanel = PageUtils.createElement('div', 'alarmwidget-notification-panel', null, null, this.popupContainer);
     this.popupAcknowledgeButton = PageUtils.createElement('div', 'alarmwidget-acknowledge-button', null, "ACKNOWLEDGE", this.popupContainer);
@@ -62,15 +62,14 @@ class AlarmWidget {
    */
   
   connect() {
-    this.popup.style.display = "none";
+    this.popup.style.visible = "none";
     this.signalkClient.registerCallback("notifications.plugins.alarm.digest", (notifications) => {
       this.popupNotificationPanel.innerHTML = "";
       notifications.filter(notification => ((notification.method == []) || (notification.method.includes("visual")))).forEach(notification => {
         var elem = PageUtils.createElement('div', null, 'new alarmwidget-notification ' + notification.state, notification.message, this.popupNotificationPanel);
       });
       if (notifications.filter(notification => (notification.method.includes("sound"))).length) this.beep();
-      console.log(notifications.length);
-      this.popup.style.display = (notifications.length)?"normal":"none";
+      this.popup.style.visible = (notifications.length)?"normal":"none";
     });
   }
 
@@ -79,7 +78,6 @@ class AlarmWidget {
    */
 
   handleAcknowledge(e) {
-    console.log("handleAcknowledge()...");
     if (this.popup.classList.contains("zoom")) {
       this.popup.classList.remove("zoom");
     } else {
