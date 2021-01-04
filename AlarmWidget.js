@@ -43,7 +43,6 @@ class AlarmWidget {
     if (!signalkClient) throw "invalid Signal K client";
 
     this.signalkClient = signalkClient;
-    this.currentNotificationIds = [];
 
     this.popup = PageUtils.createElement('div', 'alarmwidget', 'hidden', null, window.top.document.body);
     this.popupContainer = PageUtils.createElement('div', 'alarmwidget-container', null, null, this.popup);
@@ -67,16 +66,10 @@ class AlarmWidget {
       this.popupNotificationPanel.innerHTML = "";
       notifications.filter(notification => ((notification.method == []) || (notification.method.includes("visual")))).forEach(notification => {
         var elem = PageUtils.createElement('div', null, 'new alarmwidget-notification ' + notification.state, notification.message, this.popupNotificationPanel);
-        if (this.currentNotificationIds.includes(notification.id)) elem.classList.remove("new")
-        this.popup.style.display = "normal";
       });
-      if (notifications.filter(notification => ((!this.currentNotificationIds.includes(notification.id)) && ((notification.method == []) || (notification.method.includes("sound"))))).length) {
-        this.beep();
-      }
-      this.currentNotificationIds = notifications.map(notification => notification.id);
-      console.log(currentNotificationIds.length);
+      if (notifications.filter(notification => (notification.method.includes("sound"))).length) this.beep();
+      this.popup.style.display = (notifications.length)?"normal":"none";
     });
-    if (this.currentNotificationIds.length == 0) this.popup.style.display = "none";
   }
 
   /********************************************************************
