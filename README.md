@@ -1,12 +1,16 @@
-# signalk-libalarmclient
+# signalk-alarm-widget
 
-Web component for signalk-alarm.
+__signalk-alarm-widget__ implements __AlarmWidget.js__, a web component
+for use in Signal K webapps.
 
-This library provides a popup component for use in Signal K webapps
-that reacts to alarm notifications issued by
-[__signalk-alarm__](https://github.com/preeve9534/signalk-alarm#readme).
+__AlarmWidget.js__ is designed to be embedded in a host web page where it
+will monitor alarm notifications raised by
+[__signalk-alarm__](https://github.com/preeve9534/signalk-alarm#readme),
+displaying a visible and audible announcement of active alarm notifications.
 
-To use the widget, download the library to a location accessible from
+## Use
+
+Download the following libraries to a location accessible from your webapp
 your webapp and include the JavaScript and CSS components by adding
 something like this at the top of your main webapp file (usually
 'index.html' or 'index.js').
