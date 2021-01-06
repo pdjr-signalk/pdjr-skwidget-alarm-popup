@@ -62,14 +62,14 @@ class AlarmWidget {
    */
   
   connect() {
-    this.popup.style.visible = "none";
+    this.popup.style.visibility = "hidden";
     this.signalkClient.registerCallback("notifications.plugins.alarm.digest", (notifications) => {
       this.popupNotificationPanel.innerHTML = "";
       notifications.filter(notification => ((notification.method == []) || (notification.method.includes("visual")))).forEach(notification => {
         var elem = PageUtils.createElement('div', null, 'new alarmwidget-notification ' + notification.state, notification.message, this.popupNotificationPanel);
       });
       if (notifications.filter(notification => (notification.method.includes("sound"))).length) this.beep();
-      this.popup.style.visible = (notifications.length)?"normal":"none";
+      this.popup.style.visibility = (notifications.length)?"visible":"hidden";
     });
   }
 
