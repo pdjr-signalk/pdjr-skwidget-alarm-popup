@@ -63,7 +63,7 @@ class AlarmPopup {
   
   connect() {
     this.popup.style.visibility = "hidden";
-    this.signalkClient.registerCallback("notifications.plugins.alarm.digest", (notifications) => {
+    this.signalkClient.registerCallback("notifications.plugins.pdjr-skplugin-alarm-manager.digest", (notifications) => {
       this.popupNotificationPanel.innerHTML = "";
       notifications.filter(notification => ((notification.method == []) || (notification.method.includes("visual")))).forEach(notification => {
         var elem = PageUtils.createElement('div', null, 'new alarmpopup-notification ' + notification.state, notification.message, this.popupNotificationPanel);
