@@ -1,6 +1,6 @@
-# AlarmWidget
+# AlarmPopup
 
-__AlarmWidget__ is a JavaScript class implementing a widget that
+__AlarmPopup__ is a JavaScript class implementing a widget that
 provides a popup announcement of alarm notifications on a connected
 Signal K server.
 
@@ -31,11 +31,11 @@ $> npm install pdjr-skwidget-alarm-client
 ```
 Add the following initialisation function to your webapp.
 ```
-function initAlarmWidget() {
+function initAlarmPopup() {
       var signalkClient = SignalkClient.connect();
       signalkClient.waitForConnection().then(
         () => {
-          AlarmWidget.install(signalkClient);
+          AlarmPopup.install(signalkClient);
           SwitchMonitorWidget.install(signalkClient);
         },
         () => {
@@ -56,7 +56,7 @@ your webapp and include the JavaScript and CSS components by adding
 something like this at the top of your main webapp file (usually
 'index.html' or 'index.js').
 ```
-<script type="text/javascript" src="lib/signalk-alarm-widget/AlarmWidget.js"></script>
+<script type="text/javascript" src="lib/signalk-alarm-widget/AlarmPopup.js"></script>
 
-<link rel="stylesheet" type="text/css" href="lib/signalk-alarm-widget/AlarmWidget.css">
+<link rel="stylesheet" type="text/css" href="lib/signalk-alarm-widget/AlarmPopup.css">
 ```
